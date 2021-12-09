@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -27,6 +28,7 @@ public class Main_Window extends javax.swing.JFrame {
 
     private Object imagePath;
     private String pic;
+    private String ImgPath;
 
     /**
      * Creates new form Main_Window
@@ -66,6 +68,27 @@ public class Main_Window extends javax.swing.JFrame {
             }
 
     
+    //check input fields
+ public boolean checkInputs()
+    {
+        if(
+              txt_name.getText() == null
+           || txt_price.getText() == null
+           || txt_AddDate.getDate() == null
+          ){
+            return false;
+        }
+        else{
+            try{
+                Float.parseFloat(txt_price.getText());
+                return true;
+            }catch(Exception ex)
+            {
+                return false;
+            }
+        
+        }
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -76,17 +99,17 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        txt_price = new javax.swing.JTextField();
+        txt_name = new javax.swing.JTextField();
+        txt_id = new javax.swing.JTextField();
+        txt_AddDate = new com.toedter.calendar.JDateChooser();
         lbl_image = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_chooser = new javax.swing.JButton();
+        btn_insert = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_delete = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -110,28 +133,28 @@ public class Main_Window extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Image :");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_price.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txt_price.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_priceActionPerformed(evt);
             }
         });
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_name.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txt_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_nameActionPerformed(evt);
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txt_id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txt_idActionPerformed(evt);
             }
         });
 
-        jDateChooser1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_AddDate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         lbl_image.setBackground(new java.awt.Color(153, 255, 255));
 
@@ -148,38 +171,38 @@ public class Main_Window extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Chooser Image");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_chooser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_chooser.setText("Chooser Image");
+        btn_chooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_chooserActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 255, 204));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Insert");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_insert.setBackground(new java.awt.Color(51, 255, 204));
+        btn_insert.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_insert.setText("Insert");
+        btn_insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_insertActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 255, 204));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setText("Update");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_update.setBackground(new java.awt.Color(0, 255, 204));
+        btn_update.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_updateActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 255, 204));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton4.setText("Delete");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btn_delete.setBackground(new java.awt.Color(0, 255, 204));
+        btn_delete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_delete.setText("Delete");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_deleteActionPerformed(evt);
             }
         });
 
@@ -237,21 +260,21 @@ public class Main_Window extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField1)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_price)
+                                .addComponent(txt_name, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                .addComponent(txt_id, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                .addComponent(txt_AddDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lbl_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton1))
+                            .addComponent(btn_chooser))
                         .addGap(59, 59, 59)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(115, 115, 115)
-                        .addComponent(jButton2)
+                        .addComponent(btn_insert)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(btn_update)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)
+                        .addComponent(btn_delete)
                         .addGap(35, 35, 35)
                         .addComponent(jButton5)
                         .addGap(18, 18, 18)
@@ -272,32 +295,32 @@ public class Main_Window extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3))
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_AddDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(lbl_image, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btn_chooser)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2)
-                            .addComponent(jButton4)))
+                            .addComponent(btn_update)
+                            .addComponent(btn_insert)
+                            .addComponent(btn_delete)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -311,34 +334,81 @@ public class Main_Window extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_priceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_priceActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_nameActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txt_idActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void btn_chooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chooserActionPerformed
+       
+        JFileChooser file = new JFileChooser();
+        file.setCurrentDirectory(new File(System.getProperty("user.home")));
+       
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "jpg","png");
+        file.addChoosableFileFilter(filter);
+        int result = file.showSaveDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION)
+        {
+            File selectedFile = file.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+            lbl_image.setIcon(ResizeImage(path, null));
+            ImgPath = path;
+        }
+        else{
+            System.out.println("No File Selected");
+        }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_chooserActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btn_insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_insertActionPerformed
+        
+         if(checkInputs() && ImgPath != null)
+        {
+            try {
+                 Connection con = getConnection();
+                PreparedStatement ps = con.prepareStatement("INSERT INTO products(name,price,add_date,image)"
+                        + "values(?,?,?,?) ");
+                ps.setString(1, txt_name.getText());
+                ps.setString(2, txt_price.getText());
+               
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String addDate = dateFormat.format(txt_AddDate.getDate());
+                ps.setString(3, addDate);
+               
+                InputStream img = new FileInputStream(new File(ImgPath));
+                ps.setBlob(4, img);
+                
+                ps.executeUpdate();
+                Show_Products_In_JTable();
+               
+                JOptionPane.showMessageDialog(null, "Data Inserted");
+            } catch (Exception ex) {
+                 JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "One Or More Field Are Empty");
+        }
+       
+        // only for test
+        System.out.println("Name => "+txt_name.getText());
+        System.out.println("Price => "+txt_price.getText());
+        System.out.println("Image => "+ImgPath);
+    }//GEN-LAST:event_btn_insertActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_updateActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btn_deleteActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -392,15 +462,14 @@ public class Main_Window extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btn_chooser;
+    private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_insert;
+    private javax.swing.JButton btn_update;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -408,9 +477,22 @@ public class Main_Window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lbl_image;
+    private com.toedter.calendar.JDateChooser txt_AddDate;
+    private javax.swing.JTextField txt_id;
+    private javax.swing.JTextField txt_name;
+    private javax.swing.JTextField txt_price;
     // End of variables declaration//GEN-END:variables
-}
+
+    private Icon ResizeImage(String path, Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   // private void initComponents() {
+    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    private void Show_Products_In_JTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    }
+//}
